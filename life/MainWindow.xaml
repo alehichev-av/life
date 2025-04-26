@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:life"
         xmlns:views="clr-namespace:life.Views"
+        xmlns:vm="clr-namespace:life.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -81,8 +82,9 @@
                     Grid.Row="0"/>
             <Button Content="Step"
                     Grid.Column="3"
-                    Grid.Row="0"/>  
+                    Grid.Row="0"
+                    Command="{Binding DataContext.Step, ElementName=LifeViewControl}"/>  
         </Grid>
-        <views:LifeView Grid.Column="1" Grid.Row="1" Margin="10"/>
+        <views:LifeView x:Name="LifeViewControl" Grid.Column="1" Grid.Row="1" Margin="10"/>
     </Grid>
 </Window>
