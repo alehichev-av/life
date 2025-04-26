@@ -20,6 +20,7 @@ namespace life.ViewModels
         public CellsModel Cells { get; init; }
         public ICommand Resize { get; init; }
         public ICommand Step { get; init; }
+        public ICommand Clear { get; init; }
         public int Rows { get; set; }
         public int Columns { get; set; }
 
@@ -55,6 +56,7 @@ namespace life.ViewModels
         }
         public ObservableCollection<Point> Coords { get; set; }
         
+
         private void updateCoords () {         
             Coords = new ObservableCollection<Point>();
             for (int i = 0; i < Rows; ++i)
@@ -63,7 +65,6 @@ namespace life.ViewModels
         }
         private void updateWholeField()
         {
-            service.Step(Cells);
             for (int i = 0; i < Rows; ++i)
                 for (int j = 0; j < Columns; j++)
                     Coords[i * Columns + j].toggled();
@@ -77,7 +78,12 @@ namespace life.ViewModels
             Cells = new CellsModel(Rows, Columns);
             service = new CellsService();
             Resize = new RelayCommand(() => { service.Resize(Cells, Rows, Columns); });
-            Step = new RelayCommand(() => this.updateWholeField());
+            Step = new RelayCommand(() =>
+            {
+                service.Step(Cells);
+                this.updateWholeField();
+            });
+            Clear = new RelayCommand(() => { service.clear(Cells); this.updateWholeField(); });
         }
     }
 }

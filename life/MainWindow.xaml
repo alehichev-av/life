@@ -22,8 +22,11 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Grid.Column="0">Set</Button>
-            <Button Grid.Row="1" Grid.Column="0">Clear</Button>
+            <Button Grid.Row="0" Grid.Column="0"
+                    >Set</Button>
+            <Button Grid.Row="1" Grid.Column="0"
+                    Command="{Binding DataContext.Clear, ElementName=LifeViewControl}"
+                    >Clear</Button>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>

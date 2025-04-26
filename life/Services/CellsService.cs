@@ -49,5 +49,10 @@ namespace life.Services
         {
             model.Cells[x + model.x * y] = !(model.Cells[x + model.x * y]);
         }
+        public void clear(CellsModel model)
+        {
+            List<bool> newCells = new List<bool>(Enumerable.Repeat(false, model.x * model.y));
+            model.Cells = new ObservableCollection<bool>(newCells);
+        }
     }
 }
